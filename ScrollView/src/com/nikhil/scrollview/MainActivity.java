@@ -6,8 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.teamNikaml.scrollviewlib.model.MyHorizontalScrollView;

@@ -3,7 +3,7 @@
  *
  * Jun 25, 2015
  */
-package com.teamNikaml.scrollviewlib.model;
+package com.teamnikaml.scrollviewlib.model;
 
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
