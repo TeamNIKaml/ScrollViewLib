@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.teamNikaml.scrollviewlib.model.MyHorizontalScrollView;
-import com.teamNikaml.scrollviewlib.model.MyScrollView;
+import com.teamnikaml.scrollviewlib.model.MyHorizontalScrollView;
+import com.teamnikaml.scrollviewlib.model.MyScrollView;
 
 public class MainActivity extends Activity {
 
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 		horizontalScrollView.addImageView(bmp, 5);
 		
 		
-		view.addHorizondalScroll(horizontalScrollView.getHorizontalScrollView(), 6);
+		view.addView(horizontalScrollView.getHorizontalScrollView(), 6);
 		
 
 	}

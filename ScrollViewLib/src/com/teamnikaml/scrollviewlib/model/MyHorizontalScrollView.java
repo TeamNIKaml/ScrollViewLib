@@ -86,7 +86,7 @@ public class MyHorizontalScrollView {
 
 	}
 	
-	public void addHorizondalScroll(View view, int id)
+	public void addView(View view, int id)
 	{
 		view.setId(id);
 		layout.addView(view);

@@ -20,7 +20,9 @@ import android.widget.TextView;
  * @author Nikhil V
  * 
  */
-public class MyScrollView {
+public class MyScrollView  {
+
+	
 
 	private ScrollView scrollView;
 
@@ -54,12 +56,13 @@ public class MyScrollView {
 		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
 		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		scrollView.addView(layout);
+
 	}
 
 	/**
 	 * @author Nikhil V Jun 25, 2015
 	 * @param text
-	 * @param id 
+	 * @param id
 	 */
 	public void addTextView(String text, int id) {
 		// TODO Auto-generated method stub
@@ -71,7 +74,7 @@ public class MyScrollView {
 		layout.addView(view);
 
 	}
-	
+
 	public void addImageView(Bitmap bitmap, int id) {
 		// TODO Auto-generated method stub
 
@@ -81,7 +84,7 @@ public class MyScrollView {
 		layout.addView(view);
 
 	}
-	
+
 	public void addButton(String text, int id) {
 		// TODO Auto-generated method stub
 
@@ -91,15 +94,12 @@ public class MyScrollView {
 		layout.addView(view);
 
 	}
-	
-	public void addHorizondalScroll(View view, int id)
-	{
+
+	public void addView(View view, int id) {
 		view.setId(id);
 		layout.addView(view);
 	}
-	
-	
-	
+
 	
 
 }
