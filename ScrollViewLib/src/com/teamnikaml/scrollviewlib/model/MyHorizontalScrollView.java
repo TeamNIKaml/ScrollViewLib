@@ -66,6 +66,26 @@ public class MyHorizontalScrollView {
 
 	}
 	
+	public void addTextView(String text, int id,float textsize,int textColor,int padding) {
+		// TODO Auto-generated method stub
+
+		TextView view = new TextView(context);
+		view.setId(id);
+		view.setText(text);
+		view.setTextColor(textColor);
+		view.setTextSize(textsize);
+		view.setPadding(padding,padding,padding,padding);
+		layout.addView(view);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public void addImageView(Bitmap bitmap, int id) {
 		// TODO Auto-generated method stub
 
