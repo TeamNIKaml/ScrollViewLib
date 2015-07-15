@@ -5,14 +5,15 @@
  */
 package com.teamnikaml.scrollviewlib.model;
 
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -25,8 +26,12 @@ public class MyScrollView {
 	private ScrollView scrollView;
 
 	private Context context;
+	
+	private LinearLayout layout ;
 
-	private LinearLayout layout;
+	private TextView textView;
+	
+
 	
 	private static MyScrollView myScrollView;
 	
@@ -71,13 +76,23 @@ public class MyScrollView {
 	public void init() {
 		// TODO Auto-generated method stub
 		if(scrollView == null)
+		{
 		scrollView = new ScrollView(context);
+			
+		}
+		
+		
+			
 		layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
 		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		scrollView.setFillViewport(true);
 		scrollView.addView(layout);
+	
+		
+		
+		
 
 	}
 
@@ -89,11 +104,18 @@ public class MyScrollView {
 	public void addTextView(String text, int id) {
 		// TODO Auto-generated method stub
 
-		TextView view = new TextView(context);
-		view.setId(id);
-		view.setText(text);
-		view.setTextColor(Color.BLACK);
-		layout.addView(view);
+		TextViewHolder holder = new TextViewHolder();
+			holder.textView = new TextView(context);
+		
+		//TextView view = new TextView(context);
+		holder.textView.setId(id);
+		holder.textView.setText(text);
+		holder.textView.setTextColor(Color.BLACK);
+		
+	//	LinearLayout textlinearLayout = getLinearLayoutVertical();
+	//	textlinearLayout.addView(holder.textView);
+		
+		layout.addView(holder.textView);
 
 	}
 
@@ -101,13 +123,17 @@ public class MyScrollView {
 			int padding) {
 		// TODO Auto-generated method stub
 
-		TextView view = new TextView(context);
-		view.setId(id);
-		view.setText(text);
-		view.setTextColor(textColor);
-		view.setTextSize(textsize);
-		view.setPadding(padding, padding, padding, padding);
-		layout.addView(view);
+		TextViewHolder holder = new TextViewHolder();
+			holder.textView = new TextView(context);
+		holder.textView .setId(id);
+		holder.textView .setText(text);
+		holder.textView .setTextColor(textColor);
+		holder.textView .setTextSize(textsize);
+		holder.textView .setPadding(padding, padding, padding, padding);
+		
+		//LinearLayout textlinearLayout = getLinearLayoutVertical();
+		//textlinearLayout.addView(holder.textView);
+		layout.addView(holder.textView);
 
 	}
 
@@ -116,20 +142,24 @@ public class MyScrollView {
 	public void addImageView(Bitmap bitmap, int id) {
 		// TODO Auto-generated method stub
 
-		ImageView view = new ImageView(context);
-		view.setId(id);
-		view.setImageBitmap(bitmap);
-		layout.addView(view);
+	ImageViewHolder	holder = new ImageViewHolder();
+			holder.imageView = new ImageView(context);
+		holder.imageView.setId(id);
+		holder.imageView.setImageBitmap(bitmap);
+	//	LinearLayout imageLayout = getLinearLayoutVertical();
+	//	imageLayout.addView(holder.imageView);
+		layout.addView(holder.imageView);
 
 	}
 
 	public void addButton(String text, int id) {
 		// TODO Auto-generated method stub
 
-		Button view = new Button(context);
-		view.setId(id);
-		view.setText(text);
-		layout.addView(view);
+		ButtonViewHolder holder = new ButtonViewHolder();
+		holder.button = new Button(context);
+		holder.button.setId(id);
+		holder.button.setText(text);
+		layout.addView(holder.button);
 
 	}
 
@@ -144,15 +174,73 @@ public class MyScrollView {
 		layout.addView(view, 0);
 	}
 	
-	public void removeViewTop()
+	
+	public LinearLayout getLinearLayoutVertical()
 	{
+		LinearLayout layout = new LinearLayout(context);
+		layout.setOrientation(LinearLayout.VERTICAL);
+		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
+		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		
-		layout.removeViewAt(0);
+		return layout;
 	}
+	public LinearLayout getLinearLayoutHorizontal()
+	{
+		LinearLayout layout = new LinearLayout(context);
+		layout.setOrientation(LinearLayout.HORIZONTAL);
+		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
+		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
+		
+		return layout;
+	}
+	
+	
 	
 	public void removeAllView()
 	{
+		if(scrollView!=null)
 		scrollView.removeAllViews();
+		layout = null;
+		
+	}
+	
+	private class TextViewHolder {
+		private TextView textView;
+		
+		
+	}
+	
+	private class ImageViewHolder {
+		private ImageView imageView;
+		
+		
+	}
+	
+	private class ButtonViewHolder {
+		private Button button;
+		
+		
+	}
+	
+	private int getTextViewId()
+	{
+		int count = scrollView.getChildCount();
+		
+		
+		for(int i=0;i<0;i++)
+		{
+			Object o = scrollView.getChildAt(i);
+			if(o instanceof TextView)
+			{
+				textView =(TextView) o;
+				if(textView.getVisibility() == View.GONE)
+				{
+					
+				}
+			}
+		}
+		
+		return 0;
 	}
 
 }

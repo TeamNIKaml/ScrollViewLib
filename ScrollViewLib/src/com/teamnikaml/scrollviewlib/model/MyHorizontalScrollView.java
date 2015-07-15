@@ -64,8 +64,9 @@ public class MyHorizontalScrollView {
 	@author Nikhil V
 	Jun 25, 2015
 	 */
-	private void init() {
+	public void init() {
 		// TODO Auto-generated method stub
+		if(horizontalScrollView == null)
 		horizontalScrollView = new HorizontalScrollView(context);
 		layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -99,6 +100,13 @@ public class MyHorizontalScrollView {
 		view.setPadding(padding,padding,padding,padding);
 		layout.addView(view);
 
+	}
+	
+	public void removeAllView()
+	{
+		if(horizontalScrollView != null)
+		horizontalScrollView.removeAllViews();
+		layout = null;
 	}
 	
 	
