@@ -22,11 +22,33 @@ import android.widget.TextView;
  */
 public class MyHorizontalScrollView {
 
-	private Context context;
+	private  Context context;
 	private HorizontalScrollView horizontalScrollView;
 	private LinearLayout layout;
 	
+	private static MyHorizontalScrollView myHorizontalScrollView;
 	
+	public static MyHorizontalScrollView getMyHorizontalScrollView()
+	{
+		if(myHorizontalScrollView == null)
+			myHorizontalScrollView =new MyHorizontalScrollView();
+		return myHorizontalScrollView;
+	}
+	
+	private MyHorizontalScrollView()
+	{
+		
+	}
+	
+	
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+
 	public HorizontalScrollView getHorizontalScrollView() {
 		return horizontalScrollView;
 	}
