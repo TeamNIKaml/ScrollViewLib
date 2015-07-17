@@ -33,14 +33,9 @@ public class MyScrollView {
 	
 
 	
-	private static MyScrollView myScrollView;
 	
-	public static MyScrollView getMyScrollView()
-	{
-		if(myScrollView == null)
-			myScrollView = new MyScrollView();
-		return myScrollView;
-	}
+	
+
 
 	public MyScrollView(Context context) {
 		super();
@@ -49,19 +44,7 @@ public class MyScrollView {
 		init();
 	}
 
-	private MyScrollView() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Context getContext() {
-		return context;
-	}
-
-	public void setContext(Context context) {
-		this.context = context;
-	}
-
+	
 	public ScrollView getScrollView() {
 		return scrollView;
 	}
@@ -189,8 +172,7 @@ public class MyScrollView {
 		LinearLayout layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.HORIZONTAL);
 		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
-		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
-		
+		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);		
 		return layout;
 	}
 	
@@ -201,6 +183,8 @@ public class MyScrollView {
 		if(scrollView!=null)
 		scrollView.removeAllViews();
 		layout = null;
+		
+		
 		
 	}
 	
