@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 
 		view.addImageView(bmp, 5);
 		
-		MyHorizontalScrollView horizontalScrollView = new MyHorizontalScrollView(getApplicationContext());
+	/*	MyHorizontalScrollView horizontalScrollView = new MyHorizontalScrollView(getApplicationContext());
 		horizontalScrollView.addButton("Test Button",1);
 		horizontalScrollView.addTextView("test", 2);
 		horizontalScrollView.addTextView("test", 3);
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 		horizontalScrollView.addImageView(bmp, 5);
 		
 		
-		view.addView(horizontalScrollView.getHorizontalScrollView(), 6);
+		view.addView(horizontalScrollView.getHorizontalScrollView(), 6);*/
 		
 
 	}
