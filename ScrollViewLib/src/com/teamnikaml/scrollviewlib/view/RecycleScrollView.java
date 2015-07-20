@@ -44,6 +44,7 @@ public class RecycleScrollView extends ScrollView{
 	public void addView(View child) {
 		// TODO Auto-generated method stub
 		viewCount++;
+		System.out.println("view count"+viewCount);
 		super.addView(child);
 	}
 
@@ -51,6 +52,7 @@ public class RecycleScrollView extends ScrollView{
 	public void addView(View child, int index) {
 		// TODO Auto-generated method stub
 		viewCount++;
+		System.out.println("view count"+viewCount);
 		super.addView(child, index);
 	}
 
@@ -58,6 +60,7 @@ public class RecycleScrollView extends ScrollView{
 	public void addView(View child, android.view.ViewGroup.LayoutParams params) {
 		// TODO Auto-generated method stub
 		viewCount++;
+		System.out.println("view count"+viewCount);
 		super.addView(child, params);
 	}
 
@@ -66,6 +69,7 @@ public class RecycleScrollView extends ScrollView{
 			android.view.ViewGroup.LayoutParams params) {
 		// TODO Auto-generated method stub
 		viewCount++;
+		System.out.println("view count"+viewCount);
 		super.addView(child, index, params);
 	}
 
@@ -73,6 +77,7 @@ public class RecycleScrollView extends ScrollView{
 	public void addView(View child, int width, int height) {
 		// TODO Auto-generated method stub
 		viewCount++;
+		System.out.println("view count"+viewCount);
 		super.addView(child, width, height);
 	}
 
