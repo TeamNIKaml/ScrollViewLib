@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -70,15 +71,16 @@ public class MyScrollView {
 	public void addTextView(String text, int id) {
 		// TODO Auto-generated method stub
 
-		TextViewHolder holder = new TextViewHolder();
-		holder.textView = new TextView(context);
+		
+		TextView textView = new TextView(context);
 
 		
-		holder.textView.setId(id);
-		holder.textView.setText(text);
-		holder.textView.setTextColor(Color.BLACK);
-
-		layout.addView(holder.textView);
+		textView.setId(id);
+		textView.setText(text);
+		textView.setTextColor(Color.BLACK);
+		
+		
+		layout.addView(textView);
 
 	}
 
@@ -86,52 +88,56 @@ public class MyScrollView {
 			int padding) {
 		// TODO Auto-generated method stub
 
-		TextViewHolder holder = new TextViewHolder();
-		holder.textView = new TextView(context);
-		holder.textView.setId(id);
-		holder.textView.setText(text);
-		holder.textView.setTextColor(textColor);
-		holder.textView.setTextSize(textsize);
-		holder.textView.setPadding(padding, padding, padding, padding);
+		
+		TextView textView = new TextView(context);
+		textView.setId(id);
+		textView.setText(text);
+		textView.setTextColor(textColor);
+		textView.setTextSize(textsize);
+		textView.setPadding(padding, padding, padding, padding);
 
-		// LinearLayout textlinearLayout = getLinearLayoutVertical();
-		// textlinearLayout.addView(holder.textView);
-		layout.addView(holder.textView);
+		
+		layout.addView(textView);
 
 	}
 
 	public void addImageView(Bitmap bitmap, int id) {
 		// TODO Auto-generated method stub
 
-		ImageViewHolder holder = new ImageViewHolder();
-		holder.imageView = new ImageView(context);
-		holder.imageView.setId(id);
-		holder.imageView.setImageBitmap(bitmap);
-		// LinearLayout imageLayout = getLinearLayoutVertical();
-		// imageLayout.addView(holder.imageView);
-		layout.addView(holder.imageView);
+		
+		ImageView imageView = new ImageView(context);
+		imageView.setId(id);
+		imageView.setImageBitmap(bitmap);
+		
+		
+		layout.addView(imageView);
 
 	}
 
 	public void addButton(String text, int id) {
 		// TODO Auto-generated method stub
 
-		ButtonViewHolder holder = new ButtonViewHolder();
-		holder.button = new Button(context);
-		holder.button.setId(id);
-		holder.button.setText(text);
-		layout.addView(holder.button);
-
+		
+		Button button = new Button(context);
+		button.setId(id);
+		button.setText(text);
+		
+		layout.addView(button);
+		
 	}
 
 	public void addView(View view, int id) {
 		view.setId(id);
+		
 		layout.addView(view);
+	
 	}
 
 	public void addViewTop(View view, int id) {
 		view.setId(id);
+	
 		layout.addView(view, 0);
+		
 	}
 
 	public LinearLayout getLinearLayoutVertical() {
@@ -151,27 +157,16 @@ public class MyScrollView {
 		return layout;
 	}
 
-	public void removeAllView() {
-		if (scrollView != null)
-			scrollView.removeAllViews();
-		layout = null;
+	
 
+	private FrameLayout getFrameLayout()
+	{
+		FrameLayout frameLayout = new FrameLayout(context);		
+		frameLayout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
+		frameLayout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
+		return frameLayout;
 	}
-
-	private class TextViewHolder {
-		private TextView textView;
-
-	}
-
-	private class ImageViewHolder {
-		private ImageView imageView;
-
-	}
-
-	private class ButtonViewHolder {
-		private Button button;
-
-	}
+	
 
 	private int getTextViewId() {
 		int count = scrollView.getChildCount();
