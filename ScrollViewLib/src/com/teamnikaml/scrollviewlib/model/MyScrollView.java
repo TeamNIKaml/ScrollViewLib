@@ -5,19 +5,22 @@
  */
 package com.teamnikaml.scrollviewlib.model;
 
-import com.teamnikaml.scrollviewlib.view.RecycleScrollView;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.nikhil.bitmaploading.displayingbitmaps.ui.RecyclingImageView;
+import com.nikhil.bitmaploading.displayingbitmaps.util.ImageFetcher;
+import com.nikhil.bitmaploading.displayingbitmaps.util.ImageResizer;
 
 /**
  * @author Nikhil V
@@ -25,13 +28,15 @@ import android.widget.TextView;
  */
 public class MyScrollView {
 
-	private RecycleScrollView scrollView;
+	private ScrollView scrollView;
 
 	private Context context;
 
 	private LinearLayout layout;
 
-	private TextView textView;
+	private int width;
+
+	private int height;
 
 	public MyScrollView(Context context) {
 		super();
@@ -49,17 +54,17 @@ public class MyScrollView {
 	 */
 	public void init() {
 		// TODO Auto-generated method stub
-		if (scrollView == null) {
-			scrollView = new RecycleScrollView(context);
+		
+			scrollView = new ScrollView(context);
 
-		}
-
+		
 		layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
 		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		scrollView.setFillViewport(true);
 		scrollView.addView(layout);
+		getScreenDimension();
 
 	}
 
@@ -71,15 +76,12 @@ public class MyScrollView {
 	public void addTextView(String text, int id) {
 		// TODO Auto-generated method stub
 
-		
 		TextView textView = new TextView(context);
 
-		
 		textView.setId(id);
 		textView.setText(text);
 		textView.setTextColor(Color.BLACK);
-		
-		
+
 		layout.addView(textView);
 
 	}
@@ -88,7 +90,6 @@ public class MyScrollView {
 			int padding) {
 		// TODO Auto-generated method stub
 
-		
 		TextView textView = new TextView(context);
 		textView.setId(id);
 		textView.setText(text);
@@ -96,20 +97,34 @@ public class MyScrollView {
 		textView.setTextSize(textsize);
 		textView.setPadding(padding, padding, padding, padding);
 
-		
 		layout.addView(textView);
 
 	}
 
-	public void addImageView(Bitmap bitmap, int id) {
+	public void addImageView(int resource, int id) {
 		// TODO Auto-generated method stub
 
-		
-		ImageView imageView = new ImageView(context);
+		RecyclingImageView imageView = new RecyclingImageView(context);
 		imageView.setId(id);
-		imageView.setImageBitmap(bitmap);
-		
-		
+		ImageResizer mImageFetcher = new ImageResizer(context, width, height);
+		mImageFetcher.loadImage(resource, imageView);
+		layout.addView(imageView);
+
+	}
+
+	public void addImageView(String url, int id) {
+		// TODO Auto-generated method stub
+
+		/*
+		 * ImageView imageView = new ImageView(context); imageView.setId(id);
+		 * imageView.setImageBitmap(bitmap);
+		 */
+
+		RecyclingImageView imageView = new RecyclingImageView(context);
+		imageView.setId(id);
+		ImageFetcher mImageFetcher = new ImageFetcher(context, width, height);
+		mImageFetcher.loadImage(url, imageView);
+
 		layout.addView(imageView);
 
 	}
@@ -117,27 +132,26 @@ public class MyScrollView {
 	public void addButton(String text, int id) {
 		// TODO Auto-generated method stub
 
-		
 		Button button = new Button(context);
 		button.setId(id);
 		button.setText(text);
-		
+
 		layout.addView(button);
-		
+
 	}
 
 	public void addView(View view, int id) {
 		view.setId(id);
-		
+
 		layout.addView(view);
-	
+
 	}
 
 	public void addViewTop(View view, int id) {
 		view.setId(id);
-	
+
 		layout.addView(view, 0);
-		
+
 	}
 
 	public LinearLayout getLinearLayoutVertical() {
@@ -157,29 +171,22 @@ public class MyScrollView {
 		return layout;
 	}
 
-	
-
-	private FrameLayout getFrameLayout()
-	{
-		FrameLayout frameLayout = new FrameLayout(context);		
+	private FrameLayout getFrameLayout() {
+		FrameLayout frameLayout = new FrameLayout(context);
 		frameLayout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
 		frameLayout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		return frameLayout;
 	}
-	
 
-	private int getTextViewId() {
-		int count = scrollView.getChildCount();
+	private int getScreenDimension() {
 
-		for (int i = 0; i < 0; i++) {
-			Object o = scrollView.getChildAt(i);
-			if (o instanceof TextView) {
-				textView = (TextView) o;
-				if (textView.getVisibility() == View.GONE) {
-
-				}
-			}
-		}
+		WindowManager wm = (WindowManager) context
+				.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		width = size.x;
+		height = size.y;
 
 		return 0;
 	}

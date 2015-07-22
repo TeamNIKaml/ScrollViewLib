@@ -14,6 +14,7 @@ import com.teamnikaml.scrollviewlib.model.MyScrollView;
 public class MainActivity extends Activity {
 
 	private MyScrollView view;
+	private int id =1;
 
 
 	@Override
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
 		// setContentView(R.layout.activity_main);
 		init();
 
-		setContentView(view.getScrollView());
+		setContentView(R.layout.activity_main);
 
 	}
 
@@ -31,27 +32,17 @@ public class MainActivity extends Activity {
 	 */
 	private void init() {
 		// TODO Auto-generated method stub
-
-		view = new MyScrollView(getApplicationContext());
-
-		view.addTextView("test", 1);
-		view.addTextView("test1", 2);
-
-		TextView textView = (TextView) view.getScrollView().findViewById(1);
-
-		textView.setText("ola");
-
-		Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-				R.drawable.bmw);
-
-		view.addImageView(bmp, 3);
-
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.flat);
-
-		view.addImageView(bmp, 4);
-		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.rabbit);
-
-		view.addImageView(bmp, 5);
+		/*view = new MyScrollView(getApplicationContext());
+		
+		setData();
+		setData();
+		setHorizontalData();*/
+		
+		setFragment();
+		setData();
+		
+		
+		
 		
 	/*	MyHorizontalScrollView horizontalScrollView = new MyHorizontalScrollView(getApplicationContext());
 		horizontalScrollView.addButton("Test Button",1);
@@ -70,6 +61,68 @@ public class MainActivity extends Activity {
 		view.addView(horizontalScrollView.getHorizontalScrollView(), 6);*/
 		
 
+	}
+
+	/**
+	@author Nikhil V
+	Jul 22, 2015
+	 */
+	private void setFragment() {
+		// TODO Auto-generated method stub
+		ScrollviewFragment fragment = new ScrollviewFragment(this);
+		view = fragment.getScrollView();
+		getFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+		
+	}
+
+	/**
+	@author Nikhil V
+	Jul 21, 2015
+	 */
+	private void setData() {
+		// TODO Auto-generated method stub
+		
+
+		setverticalData();
+		setHorizontalData();
+		
+		
+		
+		
+	}
+	
+	private void setverticalData()
+	{
+		view.addTextView("test", id++);
+		view.addTextView("test1", id++);
+
+		TextView textView = (TextView) view.getScrollView().findViewById(1);
+
+		textView.setText("ola");
+
+	
+		view.addImageView(R.drawable.bmw, id++);
+		view.addImageView( R.drawable.flat, id++);
+		view.addImageView(R.drawable.rabbit, id++);
+	}
+	
+	
+	private void setHorizontalData()
+	{
+		MyHorizontalScrollView horizontalScrollView = new MyHorizontalScrollView(getApplicationContext());
+		horizontalScrollView.addButton("Test Button",id++);
+		horizontalScrollView.addTextView("test", id++);
+		horizontalScrollView.addTextView("test", id++);
+		 
+
+		horizontalScrollView.addImageView(R.drawable.bmw, id++);
+		
+	
+
+		horizontalScrollView.addImageView( R.drawable.rabbit, id++);
+		
+		
+		view.addView(horizontalScrollView.getHorizontalScrollView(), id++);
 	}
 
 	@Override

@@ -7,14 +7,19 @@ package com.teamnikaml.scrollviewlib.model;
 
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.nikhil.bitmaploading.displayingbitmaps.ui.RecyclingImageView;
+import com.nikhil.bitmaploading.displayingbitmaps.util.ImageFetcher;
+import com.nikhil.bitmaploading.displayingbitmaps.util.ImageResizer;
 
 /**
  * @author Nikhil V
@@ -26,13 +31,15 @@ public class MyHorizontalScrollView {
 	private HorizontalScrollView horizontalScrollView;
 	private LinearLayout layout;
 	private Context context;
+	private int width;
+	private int height;
 
 	public HorizontalScrollView getHorizontalScrollView() {
 		return horizontalScrollView;
 	}
-	public void setHorizontalScrollView(HorizontalScrollView horizontalScrollView) {
+/*	public void setHorizontalScrollView(HorizontalScrollView horizontalScrollView) {
 		this.horizontalScrollView = horizontalScrollView;
-	}
+	}*/
 	public MyHorizontalScrollView(Context context) {
 		super();
 		this.context = context;
@@ -44,7 +51,7 @@ public class MyHorizontalScrollView {
 	 */
 	public void init() {
 		// TODO Auto-generated method stub
-		if(horizontalScrollView == null)
+	//	if(horizontalScrollView == null)
 		horizontalScrollView = new HorizontalScrollView(context);
 		layout = new LinearLayout(context);
 		layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -52,7 +59,7 @@ public class MyHorizontalScrollView {
 		layout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
 		horizontalScrollView.addView(layout);
 		
-		
+		getScreenDimension();
 	}
 	
 	
@@ -80,27 +87,28 @@ public class MyHorizontalScrollView {
 
 	}
 	
-	public void removeAllView()
-	{
-		if(horizontalScrollView != null)
-		horizontalScrollView.removeAllViews();
-		layout = null;
-	}
 	
 	
 	
-	
-	
-	
-	
-	
-	public void addImageView(Bitmap bitmap, int id) {
+	public void addImageView(int resource, int id) {
 		// TODO Auto-generated method stub
 
-		ImageView view = new ImageView(context);
-		view.setId(id);
-		view.setImageBitmap(bitmap);
-		layout.addView(view);
+		RecyclingImageView imageView = new RecyclingImageView(context);
+		imageView.setId(id);
+		ImageResizer mImageFetcher = new ImageResizer(context, width, height);
+		mImageFetcher.loadImage(resource, imageView);
+		layout.addView(imageView);
+
+	}
+	
+	public void addImageView(String url, int id) {
+		// TODO Auto-generated method stub
+
+		RecyclingImageView imageView = new RecyclingImageView(context);
+		imageView.setId(id);
+		ImageFetcher mImageFetcher = new ImageFetcher(context, width, height);
+		mImageFetcher.loadImage(url, imageView);
+		layout.addView(imageView);
 
 	}
 	
@@ -120,7 +128,18 @@ public class MyHorizontalScrollView {
 		layout.addView(view);
 	}
 	
-	
+	private int getScreenDimension() {
+
+		WindowManager wm = (WindowManager) context
+				.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		width = size.x;
+		height = size.y;
+
+		return 0;
+	}
 	
 	
 }
