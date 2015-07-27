@@ -171,7 +171,7 @@ public class MyScrollView {
 		return layout;
 	}
 
-	private FrameLayout getFrameLayout() {
+	public FrameLayout getFrameLayout() {
 		FrameLayout frameLayout = new FrameLayout(context);
 		frameLayout.setMinimumWidth(LayoutParams.WRAP_CONTENT);
 		frameLayout.setMinimumHeight(LayoutParams.WRAP_CONTENT);
