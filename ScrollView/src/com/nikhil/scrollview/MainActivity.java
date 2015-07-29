@@ -14,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
+import com.nikhil.bitmaploading.displayingbitmaps.ui.RecyclingImageView;
 import com.teamnikaml.scrollviewlib.model.MyHorizontalScrollView;
 import com.teamnikaml.scrollviewlib.model.MyScrollView;
 
@@ -111,12 +113,25 @@ public class MainActivity extends Activity {
 	}
 */
 	private void addFrameLayout() {
+		
+		
+		
 		View tempview = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.fragment_container, null);
 
-		
+		//tempview.setId(++id);
 
-		view.addView(tempview, ++id);
+		view.addView(tempview, R.id.container);
+		
+	
+		
+	
+		
+	
+		
+		//Fragment fragment = new Bmwfragment();
+		
+		
 		
 		
 
@@ -136,9 +151,9 @@ public class MainActivity extends Activity {
 
 		horizontalScrollView = new MyHorizontalScrollView(
 				getApplicationContext());
-		 horizontalScrollView.addButton("Test Button",id++);
-		 horizontalScrollView.addTextView("test", id++);
-		 horizontalScrollView.addTextView("test", id++);
+		// horizontalScrollView.addButton("Test Button",id++);
+		 //horizontalScrollView.addTextView("test", id++);
+		 //horizontalScrollView.addTextView("test", id++);
 		 ImageView imageView;
 			ImageClickListner clickListner = new ImageClickListner();
 		 
@@ -200,70 +215,44 @@ public class MainActivity extends Activity {
 				break;
 
 			}
-			//
-			View tempView = view.getScrollView().findViewById(id);
-			FrameLayout frameLayout = null;
-			if (tempView != null) {
-				frameLayout = (FrameLayout) tempView;
-				if (frameLayout != null) {
-					Toast.makeText(getApplicationContext(),
-							"frameLayoutnot null", Toast.LENGTH_LONG).show();
-					
-					setFragment(fragment);
-
-				} 
-
-			} else {
-				Toast.makeText(getApplicationContext(), "tempView*****Null###",
-						Toast.LENGTH_LONG).show();
-			}
-
-			// getFragmentManager().beginTransaction()
-			// .replace(R.id.container, fragment).commit();
+		View	tempview = view.getScrollView().findViewById( R.id.container);
+		
+		getFragmentManager().beginTransaction().replace(tempview.getId(), fragment).commit();
+		
 
 		}
 
-		/**
-		@author Nikhil V
-		Jul 27, 2015
-		 * @param fragment
-		 */
-		private void setFragment(Fragment fragment) {
-			// TODO Auto-generated method stub
-			if(id>1)
-			getFragmentManager().beginTransaction()
-			 .replace(id, fragment).commit();
-		}
+		
 
 	}
 
 	private class Bmwfragment extends Fragment {
-		private View view;
+		private View bmwView;
 		private ImageView imageView;
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
-			view = inflater.inflate(R.layout.fragment_view, null);
-			init(view);
-			return view;
+			bmwView = inflater.inflate(R.layout.fragment_view, null);
+			init();
+			return bmwView;
 		}
 
 		/**
 		 * @author Nikhil V Jul 27, 2015
 		 * @param view2
 		 */
-		private void init(View view2) {
+		private void init() {
 			// TODO Auto-generated method stub
-			imageView = (ImageView) view.findViewById(R.id.imageView1);
+			imageView = (ImageView) bmwView.findViewById(R.id.imageView1);
 
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
 					R.drawable.bmw);
 
 			imageView.setImageBitmap(bmp);
 
-			bmp.recycle();
+			//bmp.recycle();
 		}
 
 	}
@@ -294,7 +283,7 @@ public class MainActivity extends Activity {
 
 			imageView.setImageBitmap(bmp);
 
-			bmp.recycle();
+			//bmp.recycle();
 		}
 	}
 
@@ -324,7 +313,7 @@ public class MainActivity extends Activity {
 
 			imageView.setImageBitmap(bmp);
 
-			bmp.recycle();
+			//bmp.recycle();
 		}
 
 	}
